@@ -69,7 +69,7 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation($user: String!, $password: String!) {\n    createUser(user: $user, password: $password)\n}",
-								"variables": "{\n\t\"user\": \"test\",\n\t\"password\": \"mipass\"\n}"
+								"variables": "{\n\t\"user\": \"test2\",\n\t\"password\": \"mipass\"\n}"
 							}
 						},
 						"url": {
@@ -95,12 +95,18 @@
 							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{arroyo_erp_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "",
-								"variables": ""
+								"query": "mutation($id: ID, $name: String, $address: String, $phone: String, $email: String) { \n    editProvider(input: {_id: $id, name: $name, address: $address, phone: $phone, email: $email}) {\n      name\n    }\n  }",
+								"variables": "{\n  \"id\": \"5e458dcac2bbfc5481c77d9d\",\n  \"name\": \"El pozo\",\n  \"address\": \"C/Falsa, 9\",\n  \"phone\": \"992883344\",\n  \"email\": \"pozo@pozo.es\"\n}"
 							}
 						},
 						"url": {
@@ -227,14 +233,14 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query($id: String) {\n     getProducts(provider: $id) {\n      _id\n      code\n      name\n      iva\n      re\n      amount\n    }\n}",
+								"query": "query($id: String) {\n     getProducts(provider: $id) {\n      _id\n      code\n      name\n      iva\n      re\n      amount\n      provider\n    }\n}",
 								"variables": "{\n\t\"id\": \"5e41b4e1e6dabb35ee94f1d0\"\n}"
 							}
 						},
 						"url": {
-							"raw": "{{arroyo_erp_token}}",
+							"raw": "{{ARROYO_ERP_SERVER}}",
 							"host": [
-								"{{arroyo_erp_token}}"
+								"{{ARROYO_ERP_SERVER}}"
 							]
 						}
 					},
@@ -243,10 +249,26 @@
 				{
 					"name": "editProduct",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{arroyo_erp_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($id: ID, $code: String, $name: String, $iva: Float, $re: Float, $amount: Float) { \n    editProduct(input: {_id: $id, code: $code, name: $name, amount: $amount, iva: $iva, re: $re}) {\n      message\n      products {\n        _id\n        name\n        code\n        amount\n        iva\n        re\n        provider\n      }\n    }\n  }",
+								"variables": "{\n\t\"id\": \"5e98de001525f428821af6ae\",\n    \"code\": \"3333\",\n    \"name\": \"Test product mod\",\n    \"iva\": 23,\n    \"re\": 1.2,\n    \"amount\": 32.3\n}"
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							]
 						}
 					},
 					"response": []
@@ -287,10 +309,20 @@
 				{
 					"name": "createDeliveryOrder",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ($date: String, $provider: String!, $products: [DeliveryOrderProductInput]) { \n    createDeliveryOrder(date: $date, provider: $provider, products: $products) \n}",
+								"variables": "{\n\t\"products\": [\n\t\t{\n\t        \"product\": \"5e98de001525f428821af6ae\",\n\t        \"quantity\": 2.2,\n        }\n\t],\n    \"date\": \"12/12/2020\",\n    \"provider\": \"5e458dcac2bbfc5481c77d9d\"\n}"
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							]
 						}
 					},
 					"response": []
