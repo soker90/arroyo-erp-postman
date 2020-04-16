@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "85688757-212e-4ecc-a1a7-c3045c664e32",
+		"name": "arroyo-erp-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f81582ad-da52-4dd6-810b-690476be06a6",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"arroyo_erp_token\", jsonData.data.auth.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "referer",
+								"value": "http://localhost:3000/login",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($user: String!, $password: String!) { \n    auth(user: $user, password: $password) {\n        token\n    }\n}",
+								"variables": "{\n\t\"user\": \"{{ARROYO_ERP_USER}}\",\n\t\"password\": \"{{ARROYO_ERP_PASSWORD}}\"\n}"
+							},
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{arroyo_erp_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($user: String!, $password: String!) {\n    createUser(user: $user, password: $password)\n}",
+								"variables": "{\n\t\"user\": \"test\",\n\t\"password\": \"mipass\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							]
+						},
+						"description": "Crea un usuario en el sistema"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "providers",
+			"item": [
+				{
+					"name": "editProvider",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProviders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{arroyo_erp_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { \n    getProviders {\n      name\n      _id\n      address\n      phone\n      email\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProvider",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{arroyo_erp_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query($id: String) { \n    getProvider(id: $id) {\n      _id\n      name\n      address\n      phone\n      email\n    }\n  }",
+								"variables": "{\n\t\"id\": \"5e41b4e1e6dabb35ee94f1d0\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "createProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{arroyo_erp_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($code: String!, $name: String!, $provider: String!, $amount: Float, $iva: Float, $re: Float) { \n    createProduct(code: $code, name: $name, provider: $provider, amount: $amount, iva: $iva, re: $re) {\n      message\n      products {\n        _id\n        name\n        code\n        amount\n        iva\n        re\n      }\n    }\n  }",
+								"variables": "{\n\t\"code\": \"1123\",\n\t\"name\": \"Test product\",\n\t\"provider\": \"5e41b4e1e6dabb35ee94f1d0\",\n\t\"amount\": 12.3,\n\t\"iva\": 11.2,\n\t\"re\": 0.2\n}"
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_SERVER}}",
+							"host": [
+								"{{ARROYO_ERP_SERVER}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProducts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{arroyo_erp_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query($id: String) {\n     getProducts(provider: $id) {\n      _id\n      code\n      name\n      iva\n      re\n      amount\n    }\n}",
+								"variables": "{\n\t\"id\": \"5e41b4e1e6dabb35ee94f1d0\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{arroyo_erp_token}}",
+							"host": [
+								"{{arroyo_erp_token}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "deliveryOrders",
+			"item": [
+				{
+					"name": "getDeliveryOrders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{arroyo_erp_token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query($id: String) {\n    getDeliveryOrders(provider: $id) {\n        date\n    }\n}",
+								"variables": "{\n\t\"id\": \"5e41b4e1e6dabb35ee94f1d0\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{arroyo_erp_token}}",
+							"host": [
+								"{{arroyo_erp_token}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createDeliveryOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
