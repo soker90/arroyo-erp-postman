@@ -24,9 +24,7 @@ Casi todas las peticiones requieren ejecutar antes el login.
 |Variable            |Valor por defecto             |
 |--------------------|------------------------------|
 |ARROYO_ERP_SERVER   |http://localhost:8000/graphql |
-|--------------------|------------------------------|
 |ARROYO_ERP_USER     |-                             |
-|--------------------|------------------------------|
 |ARROYO_ERP_PASSWORD |                              |
 |--------------------|------------------------------|
 
