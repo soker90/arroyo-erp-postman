@@ -1,4 +1,4 @@
-# Colección de postamna para la API de Arroyo ERP
+# Colección de Postman para la API de Arroyo ERP
 
 La colección de postman muestra como utilizar la api GraphQL de [ArroyoErp](https://github.com/soker90/arroyo-erp-server)
 
