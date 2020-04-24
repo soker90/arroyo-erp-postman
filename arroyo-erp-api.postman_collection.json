@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "f955c6fe-8925-46b0-9e04-14a75b4b111b",
+		"name": "arroyo-erp-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dca1e817-5eb7-4d83-b931-be51db1ca659",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"arroyo_erp_token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{ARROYO_ERP_USER}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{ARROYO_ERP_PASSWORD}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}account/auth",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}account"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test22",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "prueba2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}account/createAccount",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}account"
+							],
+							"path": [
+								"createAccount"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "monit",
+			"item": [
+				{
+					"name": "health",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}monit/health",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}monit"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{arroyo_erp_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4eb2fa21-379c-455d-8592-011950422d17",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a8850f4a-e33f-4742-95cf-e5d0e2c70718",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
