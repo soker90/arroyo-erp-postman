@@ -6,7 +6,7 @@ La colección de postman muestra como utilizar la api GraphQL de [ArroyoErp](htt
 
 Para usar la última versión pulsa en el siguiente botón para importar en Postman la colección:
 
-[![Run in Postman](https://s3.amazonaws.com/postman-static/run-button.png)](https://www.getpostman.com/collections/52070fc9713350bbd020)
+[![Run in Postman](https://s3.amazonaws.com/postman-static/run-button.png)](https://www.getpostman.com/collections/6b0cdbeb8f5cf89ec1d2)
 
 Descargará la colección y la importará directamente en Postman.
 
