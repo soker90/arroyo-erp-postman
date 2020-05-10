@@ -9,16 +9,16 @@
 			"name": "account",
 			"item": [
 				{
-					"name": "auth",
+					"name": "login",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "dca1e817-5eb7-4d83-b931-be51db1ca659",
+								"id": "77144fbe-cf86-403d-8dc6-26b8f6bc3564",
 								"exec": [
 									"const jsonData = JSON.parse(responseBody);",
 									"",
-									"postman.setGlobalVariable(\"arroyo_erp_token\", jsonData.data.token);"
+									"postman.setGlobalVariable(\"arroyo_erp_token\", jsonData.token);"
 								],
 								"type": "text/javascript"
 							}
@@ -46,14 +46,54 @@
 							]
 						},
 						"url": {
-							"raw": "{{ARROYO_ERP_API_HOST}}account/auth",
+							"raw": "{{ARROYO_ERP_API_HOST}}account/login",
 							"host": [
 								"{{ARROYO_ERP_API_HOST}}account"
 							],
 							"path": [
-								"auth"
+								"login"
 							]
+						},
+						"description": "Iniciar sesión en la aplicación"
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7608fc72-31d1-4af2-8169-ee438cbf7de0",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"arroyo_erp_token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
 						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}account/me",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}account"
+							],
+							"path": [
+								"me"
+							]
+						},
+						"description": "Iniciar sesión en la aplicación"
 					},
 					"response": []
 				},
@@ -67,7 +107,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "test22",
+									"value": "test222",
 									"type": "text"
 								},
 								{
@@ -86,6 +126,301 @@
 								"createAccount"
 							]
 						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test22",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "prueba2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}products?provider=5e430c9b7d2d2ded823b153b",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}products"
+							],
+							"query": [
+								{
+									"key": "provider",
+									"value": "5e430c9b7d2d2ded823b153b"
+								}
+							]
+						},
+						"description": "Devuelve todos los productos filtrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "66664",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Productor 63",
+									"type": "text"
+								},
+								{
+									"key": "provider",
+									"value": "5e430c9b7d2d2ded823b153b",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "124",
+									"type": "text"
+								},
+								{
+									"key": "iva",
+									"value": "8.8",
+									"type": "text"
+								},
+								{
+									"key": "re",
+									"value": "0.3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}products",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}products"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "PolloS",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "iva",
+									"value": "4.0",
+									"type": "text"
+								},
+								{
+									"key": "re",
+									"value": "0.5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}products/5e5c14f032363ddc735c12cc",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}products"
+							],
+							"path": [
+								"5e5c14f032363ddc735c12cc"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "providers",
+			"item": [
+				{
+					"name": "Providers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}providers",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}providers"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "abu",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Devuelve todos los productos filtrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Provider",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}providers/5eb8556030fb2a31b4afdc0c",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}providers"
+							],
+							"path": [
+								"5eb8556030fb2a31b4afdc0c"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "abu",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Devuelve todos los productos filtrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Provider",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pozo",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "C/Malvas, 3",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "985623547",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "correo@mail.es",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}providers",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}providers"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Provider",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "PozoM",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "C/Malvas, 33",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "685623547",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "correo@mail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}providers/5eb8556030fb2a31b4afdc0c",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}providers"
+							],
+							"path": [
+								"5eb8556030fb2a31b4afdc0c"
+							]
+						},
+						"description": "Crea un nuevo producto"
 					},
 					"response": []
 				}
