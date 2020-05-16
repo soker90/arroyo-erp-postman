@@ -107,15 +107,18 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "test222",
+									"value": "edu",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "prueba2",
+									"value": "4444",
 									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "{{ARROYO_ERP_API_HOST}}account/createAccount",
@@ -322,12 +325,12 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{ARROYO_ERP_API_HOST}}providers/5eb8556030fb2a31b4afdc0c",
+							"raw": "{{ARROYO_ERP_API_HOST}}providers/5ec005c502352da62eb5f821",
 							"host": [
 								"{{ARROYO_ERP_API_HOST}}providers"
 							],
 							"path": [
-								"5eb8556030fb2a31b4afdc0c"
+								"5ec005c502352da62eb5f821"
 							],
 							"query": [
 								{
@@ -367,6 +370,16 @@
 								{
 									"key": "email",
 									"value": "correo@mail.es",
+									"type": "text"
+								},
+								{
+									"key": "businessName",
+									"value": "Pozo S.L.",
+									"type": "text"
+								},
+								{
+									"key": "cif",
+									"value": "C321456789987",
 									"type": "text"
 								}
 							]
