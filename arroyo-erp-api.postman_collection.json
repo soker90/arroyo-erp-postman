@@ -43,7 +43,10 @@
 									"value": "{{ARROYO_ERP_PASSWORD}}",
 									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "{{ARROYO_ERP_API_HOST}}account/login",
@@ -64,7 +67,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7608fc72-31d1-4af2-8169-ee438cbf7de0",
+								"id": "297c24fa-7a7b-477f-98f3-35cea5a4558d",
 								"exec": [
 									"const jsonData = JSON.parse(responseBody);",
 									"",
@@ -82,7 +85,10 @@
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "{{ARROYO_ERP_API_HOST}}account/me",
@@ -161,21 +167,48 @@
 									"type": "text",
 									"disabled": true
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
-							"raw": "{{ARROYO_ERP_API_HOST}}products?provider=5e430c9b7d2d2ded823b153b",
+							"raw": "{{ARROYO_ERP_API_HOST}}products",
 							"host": [
 								"{{ARROYO_ERP_API_HOST}}products"
 							],
 							"query": [
 								{
 									"key": "provider",
-									"value": "5e430c9b7d2d2ded823b153b"
+									"value": "5e430c9b7d2d2ded823b153b",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
 								}
 							]
 						},
 						"description": "Devuelve todos los productos filtrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Get product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}products/5f0b4be8dfa9222c3d266d94",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}products"
+							],
+							"path": [
+								"5f0b4be8dfa9222c3d266d94"
+							]
+						},
+						"description": "Devuelve el producto"
 					},
 					"response": []
 				},
@@ -189,12 +222,12 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "66664",
+									"value": "666645",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "Productor 63",
+									"value": "Productor 636",
 									"type": "text"
 								},
 								{
@@ -203,7 +236,7 @@
 									"type": "text"
 								},
 								{
-									"key": "amount",
+									"key": "historicPrice",
 									"value": "124",
 									"type": "text"
 								},
@@ -216,13 +249,49 @@
 									"key": "re",
 									"value": "0.3",
 									"type": "text"
+								},
+								{
+									"key": "rate",
+									"value": "2",
+									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "{{ARROYO_ERP_API_HOST}}products",
 							"host": [
 								"{{ARROYO_ERP_API_HOST}}products"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Update price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}products/5ed2cf6e51c44f5867f502db/price",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}products"
+							],
+							"path": [
+								"5ed2cf6e51c44f5867f502db",
+								"price"
 							]
 						},
 						"description": "Crea un nuevo producto"
@@ -262,7 +331,10 @@
 									"value": "0.5",
 									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "{{ARROYO_ERP_API_HOST}}products/5e5c14f032363ddc735c12cc",
@@ -293,7 +365,10 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
 							"raw": "{{ARROYO_ERP_API_HOST}}providers",
@@ -322,15 +397,18 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
-							"raw": "{{ARROYO_ERP_API_HOST}}providers/5ec005c502352da62eb5f821",
+							"raw": "{{ARROYO_ERP_API_HOST}}providers/5f172ee736e4d0fa0b90bd11",
 							"host": [
 								"{{ARROYO_ERP_API_HOST}}providers"
 							],
 							"path": [
-								"5ec005c502352da62eb5f821"
+								"5f172ee736e4d0fa0b90bd11"
 							],
 							"query": [
 								{
@@ -382,7 +460,10 @@
 									"value": "C321456789987",
 									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "{{ARROYO_ERP_API_HOST}}providers",
@@ -397,7 +478,7 @@
 				{
 					"name": "Edit Provider",
 					"request": {
-						"method": "PATCH",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
@@ -422,15 +503,18 @@
 									"value": "correo@mail.com",
 									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
-							"raw": "{{ARROYO_ERP_API_HOST}}providers/5eb8556030fb2a31b4afdc0c",
+							"raw": "{{ARROYO_ERP_API_HOST}}providers/5f172ee736e4d0fa0b90bd11",
 							"host": [
 								"{{ARROYO_ERP_API_HOST}}providers"
 							],
 							"path": [
-								"5eb8556030fb2a31b4afdc0c"
+								"5f172ee736e4d0fa0b90bd11"
 							]
 						},
 						"description": "Crea un nuevo producto"
@@ -458,6 +542,464 @@
 							],
 							"path": [
 								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "deliverOrders",
+			"item": [
+				{
+					"name": "Delivery Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}deliveryorders?provider=5e430c9b7d2d2ded823b153b",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}deliveryorders"
+							],
+							"query": [
+								{
+									"key": "provider",
+									"value": "5e430c9b7d2d2ded823b153b"
+								}
+							]
+						},
+						"description": "Devuelve todos los productos filtrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Delivery Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}deliveryorders/5ed2ced151c44f5867f502da",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}deliveryorders"
+							],
+							"path": [
+								"5ed2ced151c44f5867f502da"
+							]
+						},
+						"description": "Devuelve el albarán"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Delivery Order",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "1590336588047",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}deliveryorders/5ec82a4e461a223df9ccd8e1",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}deliveryorders"
+							],
+							"path": [
+								"5ec82a4e461a223df9ccd8e1"
+							]
+						},
+						"description": "Actualiza parcialmente el albarán"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Delivery Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "provider",
+									"value": "5e430c9b7d2d2ded823b153b",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}deliveryorders",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}deliveryorders"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product to Delivery Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "product",
+									"value": "5ed16110ed10b76e2856f078",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "5.1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "3",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}deliveryorders/5ed16182ed10b76e2856f079/product",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}deliveryorders"
+							],
+							"path": [
+								"5ed16182ed10b76e2856f079",
+								"product"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product to Delivery Order Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "product",
+									"value": "5ed2cf6e51c44f5867f502db",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "6",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}deliveryorders/5ed2ced151c44f5867f502da/product/0",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}deliveryorders"
+							],
+							"path": [
+								"5ed2ced151c44f5867f502da",
+								"product",
+								"0"
+							]
+						},
+						"description": "Edita un producto del albarán"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product to Delivery Order Copy Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}deliveryorders/5ed2ced151c44f5867f502da/product/8",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}deliveryorders"
+							],
+							"path": [
+								"5ed2ced151c44f5867f502da",
+								"product",
+								"8"
+							]
+						},
+						"description": "Elimina un producto del albarán"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints de albaranes",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "invoices",
+			"item": [
+				{
+					"name": "Create Invoice Compras",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deliveryOrders\": [\"5eefa6073799aec613d9bddb\"],\n    \"concept\": \"Compras\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}invoices",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}invoices"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Invoice",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"paymentDate\":1596797280000,\"type\":\"Efectivo\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}invoices/5f254fee68762449b479a834/confirm",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}invoices"
+							],
+							"path": [
+								"5f254fee68762449b479a834",
+								"confirm"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit invoice",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"dateInvoice\": 1594062299563,\n        \"dateRegister\": 1594062299563,\n        \"nInvoice\": \"333/2203\"\n    },\n    \"totals\": {\n        \"total\": 9,\n        \"iva\": 1,\n        \"re\": 4,\n        \"taxBase\": 3.3,\n        \"rate\": 0.2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}invoices/5eff675120eb3724543eabd0",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}invoices"
+							],
+							"path": [
+								"5eff675120eb3724543eabd0"
+							]
+						},
+						"description": "Crea un nuevo producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Get invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}invoices",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}invoices"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all invoices"
+					},
+					"response": []
+				},
+				{
+					"name": "Get invoices short",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}invoices/short?provider=5f0991289221e3164bd1d3de",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}invoices"
+							],
+							"path": [
+								"short"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Compras",
+									"disabled": true
+								},
+								{
+									"key": "provider",
+									"value": "5f0991289221e3164bd1d3de"
+								}
+							]
+						},
+						"description": "Get all invoices"
+					},
+					"response": []
+				},
+				{
+					"name": "Get invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}invoices/5ef26172ccfd9d1541b870be",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}invoices"
+							],
+							"path": [
+								"5ef26172ccfd9d1541b870be"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints de facturación",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "payments",
+			"item": [
+				{
+					"name": "Get payments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}payments",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}payments"
+							]
+						},
+						"description": "Devuelve los pagos no pagados"
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm payment",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paymentDate\": 1596737460000,\n    \"type\": \"Talón\",\n    \"numCheque\": \"77765\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}payments/5f25b05b9d4d1d360d6a594d/confirm",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}payments"
+							],
+							"path": [
+								"5f25b05b9d4d1d360d6a594d",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post merge",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payments\": [\n        \"5f270f514684a13b58658688\",\n        \"5f270d43c92ad8315755169a\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ARROYO_ERP_API_HOST}}payments/merge",
+							"host": [
+								"{{ARROYO_ERP_API_HOST}}payments"
+							],
+							"path": [
+								"merge"
 							]
 						}
 					},
